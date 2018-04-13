@@ -27,5 +27,7 @@ easy_analysis('NSE/KOTAKNIFTY')
 and in your terminal
 ```
 python file_name.py
+
+and click the local server link
 ```
 you would see the graphs and plots on your default browser which are very graceful.
