@@ -20,6 +20,10 @@ from one_last_chance import easy_analysis
 
 easy_analysis('specify_the_python_library_code')
 ```
+in this case it is
+```
+easy_analysis('NSE/KOTAKNIFTY')
+```
 and in your terminal
 ```
 python3 file_name.py
