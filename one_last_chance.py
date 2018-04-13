@@ -8,40 +8,45 @@ import plotly.graph_objs as go
 import auth
 
 def easy_analysis(quandl_dataset):
-	api_key = auth.key
 
-	df = quandl.get(quandl_dataset,authtoken=api_key)
-	df = df.reset_index()
+	try:
+		api_key = auth.key
 
-	app = dash.Dash(__name__)
+		df = quandl.get(quandl_dataset,authtoken=api_key)
+		df = df.reset_index()
 
-	app.layout = html.Div([
-			html.H3(quandl_dataset),
-			dcc.Dropdown(
-					id='data_columns',
-					options=[{'label' : s,'value' : s} for s in df.columns[1:]],
-					value=['Open'],
-					multi=True
-				),
-			dcc.Graph(id='column_graph')
-		])
+		app = dash.Dash(__name__)
 
-	@app.callback(
-			Output('column_graph','figure'),
-			[Input('data_columns','value')]
-		)
+		app.layout = html.Div([
+				html.H3(quandl_dataset),
+				dcc.Dropdown(
+						id='data_columns',
+						options=[{'label' : s,'value' : s} for s in df.columns[1:]],
+						value=['Open'],
+						multi=True
+					),
+				dcc.Graph(id='column_graph')
+			])
 
-	def draw_graph(data_columns):
-		graphs = []
+		@app.callback(
+				Output('column_graph','figure'),
+				[Input('data_columns','value')]
+			)
 
-		for column in data_columns:
-			graphs.append(go.Scatter(
-					x=list(df.Date),
-					y=list(df[column]),
-					name=str(column),
-					mode='lines'
-				))
+		def draw_graph(data_columns):
+			graphs = []
 
-		return {'data' : graphs}
+			for column in data_columns:
+				graphs.append(go.Scatter(
+						x=list(df.Date),
+						y=list(df[column]),
+						name=str(column),
+						mode='lines'
+					))
 
-	app.run_server(debug=True)
+			return {'data' : graphs}
+
+		app.run_server(debug=True)
+
+	except Exception as e:
+		print(str(e))
