@@ -26,6 +26,6 @@ easy_analysis('NSE/KOTAKNIFTY')
 ```
 and in your terminal
 ```
-python3 file_name.py
+python file_name.py
 ```
 you would see the graphs and plots on your default browser which are very graceful.
