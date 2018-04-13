@@ -24,4 +24,4 @@ and in your terminal
 ```
 python3 file_name.py
 ```
-you would see the graphs and plots on your default browser which is very cool.
+you would see the graphs and plots on your default browser which is very graceful.
